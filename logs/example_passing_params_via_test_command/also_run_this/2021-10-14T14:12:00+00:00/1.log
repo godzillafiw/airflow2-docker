@@ -1,0 +1,73 @@
+[2021-10-14 14:13:03,466] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: example_passing_params_via_test_command.also_run_this scheduled__2021-10-14T14:12:00+00:00 [queued]>
+[2021-10-14 14:13:03,489] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: example_passing_params_via_test_command.also_run_this scheduled__2021-10-14T14:12:00+00:00 [queued]>
+[2021-10-14 14:13:03,490] {taskinstance.py:1241} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-14 14:13:03,491] {taskinstance.py:1242} INFO - Starting attempt 1 of 1
+[2021-10-14 14:13:03,491] {taskinstance.py:1243} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-14 14:13:03,504] {taskinstance.py:1262} INFO - Executing <Task(BashOperator): also_run_this> on 2021-10-14 14:12:00+00:00
+[2021-10-14 14:13:03,513] {standard_task_runner.py:52} INFO - Started process 861 to run task
+[2021-10-14 14:13:03,523] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'example_passing_params_via_test_command', 'also_run_this', 'scheduled__2021-10-14T14:12:00+00:00', '--job-id', '30', '--raw', '--subdir', '/home/***/.local/lib/python3.6/site-packages/***/example_dags/example_passing_params_via_test_command.py', '--cfg-path', '/tmp/tmp9o0qhd4j', '--error-file', '/tmp/tmp8h09hypu']
+[2021-10-14 14:13:03,527] {standard_task_runner.py:77} INFO - Job 30: Subtask also_run_this
+[2021-10-14 14:13:03,591] {logging_mixin.py:109} INFO - Running <TaskInstance: example_passing_params_via_test_command.also_run_this scheduled__2021-10-14T14:12:00+00:00 [running]> on host 522ccbfd6863
+[2021-10-14 14:13:03,641] {taskinstance.py:1686} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1324, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1406, in _execute_task_with_callbacks
+    self.render_templates(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 2088, in render_templates
+    self.task.render_template_fields(context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/baseoperator.py", line 1057, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/baseoperator.py", line 1070, in _do_render_template_fields
+    rendered_content = self.render_template(content, context, jinja_env, seen_oids)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/baseoperator.py", line 1107, in render_template
+    return jinja_env.from_string(content).render(**context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/airflow/.local/lib/python3.6/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/airflow/.local/lib/python3.6/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "<template>", line 2, in top-level template code
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'foo'
+[2021-10-14 14:13:03,657] {taskinstance.py:1280} INFO - Marking task as FAILED. dag_id=example_passing_params_via_test_command, task_id=also_run_this, execution_date=20211014T141200, start_date=20211014T141303, end_date=20211014T141303
+[2021-10-14 14:13:03,674] {standard_task_runner.py:91} ERROR - Failed to execute job 30 for task also_run_this
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/task/task_runner/standard_task_runner.py", line 85, in _start_by_fork
+    args.func(args, dag=self.dag)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/cli_parser.py", line 48, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/utils/cli.py", line 92, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/commands/task_command.py", line 292, in task_run
+    _run_task_by_selected_method(args, dag, ti)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/commands/task_command.py", line 107, in _run_task_by_selected_method
+    _run_raw_task(args, ti)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/commands/task_command.py", line 184, in _run_raw_task
+    error_file=args.error_file,
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/utils/session.py", line 70, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1324, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1406, in _execute_task_with_callbacks
+    self.render_templates(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 2088, in render_templates
+    self.task.render_template_fields(context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/baseoperator.py", line 1057, in render_template_fields
+    self._do_render_template_fields(self, self.template_fields, context, jinja_env, set())
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/baseoperator.py", line 1070, in _do_render_template_fields
+    rendered_content = self.render_template(content, context, jinja_env, seen_oids)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/baseoperator.py", line 1107, in render_template
+    return jinja_env.from_string(content).render(**context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/home/airflow/.local/lib/python3.6/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/home/airflow/.local/lib/python3.6/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "<template>", line 2, in top-level template code
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'foo'
+[2021-10-14 14:13:03,701] {local_task_job.py:154} INFO - Task exited with return code 1
+[2021-10-14 14:13:03,737] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check
